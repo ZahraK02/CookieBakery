@@ -22,18 +22,24 @@
     </style>
 
     <script>
-        function login() {
-            //Flage hidden in cookie after login
-            const flag = "ITCflag{R8_Fr0m_Th3_0ven}";
-            const encoded = btoa(flag)
-            console.log("LOGIN CLICKED");
+function login() {
+    // مسح كل الكوكيز القديمة
+    document.cookie.split(";").forEach(function(c) { 
+        document.cookie = c
+            .replace(/^ +/, "")
+            .replace(/=.*/, "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/"); 
+    });
 
-            //Taking user to baked page
-            document.cookie = "flag=" + encoded + "; path=/; SameSite=Lax";
+    // الفلاق الحقيقي (Base64)
+    const flag_b64 = "SVRDZmxhZ3tSOF9GcjBtX1RoM18wdjNufQ==";
 
-            window.location.href = "baked.html";
-        }
-    </script>
+    // تخزين الفلاق الجديد داخل الكوكي
+    document.cookie = "flag=" + flag_b64 + "; path=/";
+
+    // الانتقال للصفحة الثانية
+    window.location.href = "baked.html";
+}
+  </script>
 </head>
 
 <body>
@@ -44,3 +50,4 @@
 </body>
 
 </html>
+
